@@ -1,6 +1,8 @@
 import 'package:digi_store/utils/file_picker/file_picker.dart';
+import 'package:digi_store/widget/digi_loading_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,6 +25,8 @@ class RegisterController extends GetxController {
   RxDouble latitude = 0.0.obs;
   RxDouble longitude = 0.0.obs;
 
+  RxBool mapIsLoading = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -33,7 +37,6 @@ class RegisterController extends GetxController {
   }
 
   Future<void> getCurrentLocation() async {
-    isLoadingForLocation.value = true;
     bool serviceEnable = await location.serviceEnabled();
     if (!serviceEnable) {
       serviceEnable = await location.requestService();
@@ -47,7 +50,6 @@ class RegisterController extends GetxController {
     if (_permissionGranted == PermissionStatus.denied) {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
-        isLoadingForLocation.value = false;
         return;
       }
     }
@@ -61,17 +63,18 @@ class RegisterController extends GetxController {
           GeoPoint(latitude: latitude.value, longitude: longitude.value);
 
       await initOsm();
+      mapController.init();
 
-      await mapController.addMarker(userLocation,
-          markerIcon: const MarkerIcon(
-            iconWidget: Icon(
-              Icons.circle,
-              color: Colors.lightBlue,
-              size: 40,
-            ),
-          ));
-
-      isLoadingForLocation.value = false;
+      Future.delayed(const Duration(seconds: 1), () async {
+        await mapController.addMarker(userLocation,
+            markerIcon: const MarkerIcon(
+              iconWidget: Icon(
+                Icons.circle,
+                color: Colors.lightBlue,
+                size: 30,
+              ),
+            ));
+      });
     }
   }
 
@@ -82,13 +85,31 @@ class RegisterController extends GetxController {
   }
 
   Future<void> gotToUserLocation() async {
+    await mapController.removeMarker(
+        GeoPoint(latitude: latitude.value, longitude: longitude.value));
+    EasyLoading.show(
+      maskType: EasyLoadingMaskType.custom,
+      indicator: const DigiLoadingWidget(color: Colors.red),
+    );
+
     _locationData = await location.getLocation();
     latitude.value = _locationData?.latitude ?? 0;
     longitude.value = _locationData?.longitude ?? 0;
     GeoPoint userLocation =
         GeoPoint(latitude: latitude.value, longitude: longitude.value);
 
+    Future.delayed(const Duration(seconds: 1), () async {
+      await mapController.addMarker(userLocation,
+          markerIcon: const MarkerIcon(
+            iconWidget: Icon(
+              Icons.circle,
+              color: Colors.lightBlue,
+              size: 30,
+            ),
+          ));
+    });
     await mapController.goToLocation(userLocation);
+    EasyLoading.dismiss();
   }
 
   Future<void> changeUserImage(ImageSource imageSource) async {
@@ -98,5 +119,12 @@ class RegisterController extends GetxController {
     } else {
       imageSelected.value = false;
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    mapController.dispose();
   }
 }

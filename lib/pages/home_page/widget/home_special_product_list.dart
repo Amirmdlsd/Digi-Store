@@ -82,6 +82,7 @@ class HomeSpecialProductList extends StatelessWidget {
                       ),
                       child: TextButton(
                         onPressed: () {
+                          Get.toNamed(ProductListScreen.productListScreen);
                         },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,

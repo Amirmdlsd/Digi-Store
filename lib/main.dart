@@ -4,12 +4,27 @@ import 'package:digi_store/pages/intro_page/splash_screen.dart';
 import 'package:digi_store/pages/single_product_page/register_comment_screen.dart';
 import 'package:digi_store/route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
+  configLoading();
   runApp(const MyApp());
+
+}
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.custom
+    ..backgroundColor = Colors.white
+    ..indicatorColor = Colors.red
+    ..textColor = Colors.black
+    ..maskColor = Colors.transparent
+    ..userInteractions = false
+    ..dismissOnTap = false;
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +37,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => GetMaterialApp(
+        builder: EasyLoading.init(),
         onGenerateRoute: (settings) => onGenerateRoute(settings),
         debugShowCheckedModeBanner: false,
         locale: const Locale('fa'),

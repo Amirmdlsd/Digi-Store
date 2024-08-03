@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -36,7 +37,11 @@ class ImageHandler {
         maxWidth: 150,
         uiSettings: [
           AndroidUiSettings(
+            backgroundColor: Colors.grey.shade700,
             cropStyle: CropStyle.circle,
+            toolbarColor: Colors.grey.shade900,
+            toolbarTitle:"ویرایش عکس",
+            toolbarWidgetColor: Colors.white
           )
         ]);
     if (imageCropper == null) return;

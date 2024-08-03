@@ -24,10 +24,12 @@ class MapScreen extends StatelessWidget {
                     child: DigiLoadingWidget(),
                   )
                 : OSMFlutter(
-                    mapIsLoading: const DigiLoadingWidget(),
+                    mapIsLoading: const Center(
+                      child: DigiLoadingWidget(),
+                    ),
                     controller: locationController.mapController,
                     osmOption: const OSMOption(
-                        isPicker: true,
+                      isPicker: true,
                         zoomOption: ZoomOption(
                             minZoomLevel: 8, maxZoomLevel: 18, initZoom: 16)))),
             Positioned(
@@ -36,7 +38,13 @@ class MapScreen extends StatelessWidget {
               child: Container(
                 width: 40.w,
                 height: 40.h,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(color: Colors.grey.withOpacity(1),
+                    offset: const Offset(2, 2),
+                      blurRadius: 2,spreadRadius: 3
+                    )
+                  ],
                     color: Colors.white, shape: BoxShape.circle),
                 child: IconButton(
                   icon: const Icon(

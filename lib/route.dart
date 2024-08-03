@@ -14,6 +14,7 @@ import 'package:digi_store/pages/search_page/search_screen.dart';
 import 'package:digi_store/pages/single_product_page/comment_list_screen.dart';
 import 'package:digi_store/pages/single_product_page/register_comment_screen.dart';
 import 'package:digi_store/pages/single_product_page/single_product_screen.dart';
+import 'package:digi_store/pages/sub_category_page/page/sub_category_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -103,6 +104,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
 
     case MapScreen.mapScreen:
       return PageRouteBuilder(pageBuilder: (_, __, ___) => MapScreen());
+    case SubCategoryScreen.subCategoryScreen:
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => SubCategoryScreen());
   }
   return null;
 }

@@ -82,7 +82,7 @@ class UserAccountItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 60.h,
+        height: 65.h,
         decoration: BoxDecoration(
             border: Border(
                 bottom: BorderSide(color: Colors.grey.shade200, width: 1.w))),

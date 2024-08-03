@@ -1,5 +1,6 @@
 import 'package:digi_store/gen/assets.gen.dart';
 import 'package:digi_store/pages/authentication_page/controller/auth_controller.dart';
+import 'package:digi_store/pages/authentication_page/pages/verification_code_screen.dart';
 import 'package:digi_store/widget/digi_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,12 @@ class SendCodeScreen extends StatelessWidget {
               ),
               SizedBox(height: 20.h),
               DigiButton(
-                onTap: () {},
+                onTap: () {
+                  Get.offNamedUntil(
+                      VerificationCodeScreen.verificationCodeScreen,
+                      (route) => false,
+                      arguments: _controller.emailController.text);
+                },
                 lable: "ورودبه دیجی استور",
               ),
               SizedBox(height: 100.h)

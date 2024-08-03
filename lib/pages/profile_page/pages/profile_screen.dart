@@ -9,10 +9,10 @@ import 'package:get/get.dart';
 import '../controller/profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
-   ProfileScreen({super.key});
+  ProfileScreen({super.key});
 
   static const String profileScreen = "/PROFILE_SCREEN";
-   final profileController =Get.put(ProfileController());
+  final profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,6 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 2,
-
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: const Text('پروفایل کاربری'),
@@ -122,27 +121,28 @@ class ProfileScreen extends StatelessWidget {
               )),
           SizedBox(height: 30.h),
           ProfileButton(
-              lable: "ویرایش مشخصات",
+            lable: "ویرایش مشخصات",
+            onTap: () {
+              Get.toNamed(UserAccountScreen.userAcountScreen);
+            },
+            icon: Icons.edit_note_outlined,
+          ),
+          ProfileButton(
+            lable: "لیست مورد علاقه",
+            onTap: () {},
+            icon: Icons.favorite,
+          ),
+          ProfileButton(
+            lable: "تاریخچه خرید",
+            onTap: () {},
+            icon: Icons.history,
+          ),
+          ProfileButton(
+              lable: "خروج از حساب کاربری",
               onTap: () {
-                Get.toNamed(UserAccountScreen.userAcountScreen);
-              },
-              icon: Icons.edit_note_outlined,
-              iconColor: Colors.lightBlue),
-          ProfileButton(
-              lable: "لیست مورد علاقه",
-              onTap: () {},
-              icon: Icons.favorite,
-              iconColor: Colors.red),
-          ProfileButton(
-              lable: "تاریخچه خرید",
-              onTap: () {},
-              icon: Icons.history,
-              iconColor: Colors.lightBlue),
-          ProfileButton(
-            iconColor: Colors.red,
-              lable: "خروج از حساب کاربری", onTap: () {
                 profileController.showLogoutDialouge();
-          }, icon: Icons.logout),
+              },
+              icon: Icons.logout),
           SizedBox(height: 20.h)
         ]),
       ),

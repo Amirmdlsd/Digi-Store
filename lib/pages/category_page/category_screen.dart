@@ -1,5 +1,6 @@
 import 'package:digi_store/pages/home_page/controller/home_list.dart';
 import 'package:digi_store/pages/product_list_page/product_list_screen.dart';
+import 'package:digi_store/pages/sub_category_page/page/sub_category_screen.dart';
 import 'package:digi_store/widget/cached_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,11 +27,29 @@ class CategoryScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.toNamed(ProductListScreen.productListScreen);
+                Get.toNamed(SubCategoryScreen.subCategoryScreen);
               },
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12.r),
-                  child: CachedImage(imageUrl: categoryList[index].image)),
+              child: SizedBox(
+                height: 180.h,
+                width: 110.h,
+                child: Column(
+                  children: [
+                    SizedBox(
+                        height: 120.h,
+                        width: double.infinity,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12.r),
+                              topRight: Radius.circular(12.r)
+
+                            ),
+                            child: CachedImage(
+                                imageUrl: categoryList[index].image))),
+                    SizedBox(height: 10.h),
+                    Text("موبایل",style: Get.textTheme.bodyMedium)
+                  ],
+                ),
+              ),
             );
           },
         ),
