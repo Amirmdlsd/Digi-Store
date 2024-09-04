@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:geocoding/geocoding.dart' as geo;
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
@@ -17,6 +18,7 @@ class RegisterController extends GetxController {
   RxBool imageSelected = false.obs;
   late MapController mapController;
   var location = Location();
+  RxString userAddress = "لطفا ادرس خود را از روی نقشه انتخاب کنید".obs;
 
   PermissionStatus? _permissionGranted;
   LocationData? _locationData;
@@ -71,7 +73,7 @@ class RegisterController extends GetxController {
               iconWidget: Icon(
                 Icons.circle,
                 color: Colors.lightBlue,
-                size: 30,
+                size: 20,
               ),
             ));
       });
@@ -104,7 +106,7 @@ class RegisterController extends GetxController {
             iconWidget: Icon(
               Icons.circle,
               color: Colors.lightBlue,
-              size: 30,
+              size: 20,
             ),
           ));
     });
@@ -119,6 +121,26 @@ class RegisterController extends GetxController {
     } else {
       imageSelected.value = false;
     }
+  }
+
+  pickUserLocation() async {
+    EasyLoading.show(indicator: const DigiLoadingWidget(), dismissOnTap: true);
+    GeoPoint userGeopoints =
+        await mapController.getCurrentPositionAdvancedPositionPicker();
+
+    await geo
+        .placemarkFromCoordinates(
+            userGeopoints.latitude, userGeopoints.longitude,
+            localeIdentifier: "Fa")
+        .then(
+      (List<geo.Placemark> placemarks) {
+        print(placemarks);
+        userAddress.value =
+            "${placemarks.first.locality} ، ${placemarks[2].name}";
+      },
+    );
+    EasyLoading.dismiss();
+    Get.back();
   }
 
   @override

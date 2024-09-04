@@ -41,28 +41,4 @@ class SplashScreen extends StatelessWidget {
   }
 }
 
-class Test extends StatelessWidget {
-  const Test({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              bool isConnected = await checkInternetConnection();
-              debugPrint(isConnected.toString());
-              if (isConnected) {
-                print('User is connected to the internet');
-              } else {
-                print('No internet connection');
-              }
-            },
-            child: const Text('Check Internet Connection'),
-          ),
-        ),
-      ),
-    );
-  }
-}

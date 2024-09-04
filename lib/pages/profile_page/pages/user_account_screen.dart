@@ -1,4 +1,6 @@
+import 'package:digi_store/pages/profile_page/pages/edit_mobile_screen.dart';
 import 'package:digi_store/pages/profile_page/pages/edit_profile.dart';
+import 'package:digi_store/pages/profile_page/pages/national_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -33,14 +35,14 @@ class UserAccountScreen extends StatelessWidget {
             SizedBox(height: 20.h),
             UserAccountItem(
                 onTap: () {
-                  Get.toNamed(EditNameScreen.editNameScreen);
+                  Get.toNamed(EditMobileScreen.editMobileScreen);
                 },
                 lable: "شماره تلفن همراه",
                 text: "09152195256"),
             SizedBox(height: 20.h),
             UserAccountItem(
                 onTap: () {
-                  Get.toNamed(EditNameScreen.editNameScreen);
+                  Get.toNamed(EditNationalCodeScreen.editNationalCodeScreen);
                 },
                 lable: "کدملی",
                 text: "092125555"),

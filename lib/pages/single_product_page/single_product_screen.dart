@@ -8,7 +8,6 @@ import 'package:digi_store/widget/digi_discount_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 
 class SingleProductScreen extends StatelessWidget {
   SingleProductScreen({super.key});
@@ -181,6 +180,7 @@ class SingleProductScreen extends StatelessWidget {
             SizedBox(
               width: 140.w,
               child: DigiButton(
+                fontSize: 10,
                 lable: 'افزودن به سبدخرید',
                 onTap: () {},
               ),

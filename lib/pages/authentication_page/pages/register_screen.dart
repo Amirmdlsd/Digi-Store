@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:digi_store/gen/assets.gen.dart';
 import 'package:digi_store/pages/authentication_page/controller/register_controller.dart';
 import 'package:digi_store/pages/authentication_page/pages/send_code_screen.dart';
 import 'package:digi_store/pages/authentication_page/widget/map.dart';
@@ -57,41 +58,55 @@ class RegisterScreen extends StatelessWidget {
                       controller: registerController.mobileController,
                       hintText: "مثلا 0915219..."),
                   SizedBox(height: 20.h),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        height: 100.h,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
-                            borderRadius: BorderRadius.circular(12.r)),
-                      ),
-                      GestureDetector(
-                        onTap: ()=>Get.toNamed(MapScreen.mapScreen),
-                        child: Container(
+                  Obx(() {
+                    return Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          height: 100.h,
                           width: double.infinity,
-                          margin: EdgeInsets.symmetric(horizontal: 10.h),
-                          height: 50.h,
                           decoration: BoxDecoration(
-                              color: Colors.red,
+                              color: Colors.grey.shade300,
                               borderRadius: BorderRadius.circular(12.r)),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "مشهد میدان شهدا",
-                                style: Get.textTheme.bodyMedium
-                                    ?.copyWith(color: Colors.white),
-                              ),
-                              const Icon(Icons.location_on_outlined,color: Colors.white,)
-                            ],
-                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.r),
+                              child: Image.asset(Assets.png.mapImage.path,
+                                  fit: BoxFit.cover)),
                         ),
-                      )
-                    ],
-                  ),
+                        GestureDetector(
+                          onTap: () => Get.toNamed(MapScreen.mapScreen),
+                          child: Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.symmetric(horizontal: 10.h),
+                            height: 50.h,
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(12.r)),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 240.w,
+                                  child: Text(
+                                    registerController.userAddress.value,
+                                    style: Get.textTheme.bodyMedium
+                                        ?.copyWith(color: Colors.white),
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.location_on_outlined,
+                                  color: Colors.white,
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  }),
                   SizedBox(height: 20.h),
                   DigiButton(
                       lable: "ثبت نام",

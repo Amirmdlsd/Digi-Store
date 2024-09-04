@@ -12,11 +12,18 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/location_icon.png
+  AssetGenImage get locationIcon =>
+      const AssetGenImage('assets/png/location_icon.png');
+
   /// File path: assets/png/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/png/logo.png');
 
+  /// File path: assets/png/map_image.png
+  AssetGenImage get mapImage => const AssetGenImage('assets/png/map_image.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [logo];
+  List<AssetGenImage> get values => [locationIcon, logo, mapImage];
 }
 
 class $AssetsSvgGen {

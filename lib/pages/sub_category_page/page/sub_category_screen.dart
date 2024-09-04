@@ -21,15 +21,18 @@ class SubCategoryScreen extends StatelessWidget {
         title: Text("دسته بندی ها",style: Get.textTheme.bodyMedium),
       ),
       body: SafeArea(
-          child: GridView.builder(
-        itemCount: 5,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 0.9),
-        itemBuilder: (context, index) => const SubCategoryItem(),
-      )),
+          child: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 10.w),
+            child: GridView.builder(
+                    itemCount: 5,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 0.9),
+                    itemBuilder: (context, index) => const SubCategoryItem(),
+                  ),
+          )),
     );
   }
 }

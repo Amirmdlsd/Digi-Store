@@ -102,16 +102,20 @@ class DigiButton extends StatelessWidget {
     super.key,
     required this.lable,
     required this.onTap,
+    this.fontSize=12
   });
 
   final String lable;
   final Function() onTap;
+  final int fontSize;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
+          elevation: 0,
             minimumSize: Size(double.infinity, 40.h),
             backgroundColor: Colors.red.shade600,
             shape: RoundedRectangleBorder(
@@ -119,7 +123,7 @@ class DigiButton extends StatelessWidget {
         child: Text(lable,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 12.sp,
+                fontSize: fontSize.sp,
                 fontWeight: FontWeight.bold)));
   }
 }

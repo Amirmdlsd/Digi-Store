@@ -1,4 +1,4 @@
-
+import 'package:digi_store/pages/product_list_page/product_list_screen.dart';
 import 'package:digi_store/pages/single_product_page/single_product_screen.dart';
 import 'package:digi_store/widget/cached_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,15 +14,19 @@ class SubCategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.toNamed(SingleProductScreen.singleProductScreen);
+      onTap: () {
+        Get.toNamed(ProductListScreen.productListScreen);
       },
       child: Container(
         width: 150.w,
         height: 180.h,
-        decoration: BoxDecoration(
-            color: Colors.grey.shade50,
-            borderRadius: BorderRadius.circular(12.r)),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.grey.shade100,
+              offset: const Offset(1, 2),
+              blurRadius: 2,
+              spreadRadius: 3)
+        ], color: Colors.white, borderRadius: BorderRadius.circular(12.r)),
         child: Column(children: [
           SizedBox(
             width: double.infinity,
@@ -33,10 +37,10 @@ class SubCategoryItem extends StatelessWidget {
                   topRight: Radius.circular(12.r)),
               child: const CachedImage(
                   imageUrl:
-                  "https://dkstatics-public.digikala.com/digikala-products/2a50dfa66db4b288f22760251745ad88f444b9c9_1662463676.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"),
+                      "https://dkstatics-public.digikala.com/digikala-products/2a50dfa66db4b288f22760251745ad88f444b9c9_1662463676.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"),
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 15.h),
           Text("گوشی موبایل", style: Get.textTheme.bodyMedium)
         ]),
       ),

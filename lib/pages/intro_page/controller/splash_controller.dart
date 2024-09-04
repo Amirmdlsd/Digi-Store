@@ -1,4 +1,5 @@
 
+import 'package:digi_store/pages/admin_page/pages/admin_screen.dart';
 import 'package:digi_store/pages/authentication_page/pages/send_code_screen.dart';
 import 'package:digi_store/pages/main_page/main_screen.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class SplashController extends GetxController {
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        Get.offAndToNamed(SendCodeScreen.sendCodeScreen);
+        Get.offAndToNamed(AdminScreen.adminScreen);
       },
     );
   }

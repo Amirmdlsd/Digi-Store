@@ -1,3 +1,4 @@
+import 'package:digi_store/pages/search_page/search_screen.dart';
 import 'package:digi_store/pages/single_product_page/single_product_screen.dart';
 import 'package:digi_store/widget/cached_image.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,27 @@ class ProductListScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        title: Text("لیست محصولات",style: Get.textTheme.bodyMedium,),
-        leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back)),
+
+
+        actions: [
+          SizedBox(width: 10.w),
+          IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.arrow_back)),
+          Expanded(
+              child: Text(
+            "دیجی استور",
+            style: Get.textTheme.bodyMedium?.copyWith(color: Colors.red,fontSize: 17.sp,fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          )),
+          IconButton(
+              onPressed: () => Get.toNamed(SearchScreen.searchScreen),
+              icon: const Icon(Icons.search)),
+          SizedBox(width: 10.w),
+
+        ],
       ),
       body: SafeArea(
           child: CustomScrollView(slivers: [
@@ -41,10 +58,11 @@ class ProductListItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.toNamed(SingleProductScreen.singleProductScreen),
       child: Container(
-        padding:  EdgeInsets.symmetric(horizontal: 10.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(width: 1,color: Colors.grey.withOpacity(0.5)))
-        ),
+            border: Border(
+                bottom:
+                    BorderSide(width: 1, color: Colors.grey.withOpacity(0.5)))),
         margin: EdgeInsets.all(8.h),
         height: 120.h,
         child: Row(
@@ -65,7 +83,7 @@ class ProductListItem extends StatelessWidget {
                   SizedBox(
                     width: 180.w,
                     child: Padding(
-                      padding:  EdgeInsets.only(top: 10.h),
+                      padding: EdgeInsets.only(top: 10.h),
                       child: Text(
                           'گوشی موبایل ریلمی مدل C55 دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت',
                           style: Theme.of(context).textTheme.labelMedium,

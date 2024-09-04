@@ -1,3 +1,5 @@
+import 'package:digi_store/pages/admin_page/pages/product_management.dart';
+import 'package:digi_store/pages/admin_page/pages/user_management.dart';
 import 'package:digi_store/pages/authentication_page/pages/register_screen.dart';
 import 'package:digi_store/pages/authentication_page/pages/send_code_screen.dart';
 import 'package:digi_store/pages/authentication_page/pages/verification_code_screen.dart';
@@ -7,7 +9,10 @@ import 'package:digi_store/pages/home_page/home_screen.dart';
 import 'package:digi_store/pages/intro_page/splash_screen.dart';
 import 'package:digi_store/pages/main_page/main_screen.dart';
 import 'package:digi_store/pages/product_list_page/product_list_screen.dart';
+import 'package:digi_store/pages/profile_page/pages/buy-history_page.dart';
+import 'package:digi_store/pages/profile_page/pages/edit_mobile_screen.dart';
 import 'package:digi_store/pages/profile_page/pages/edit_profile.dart';
+import 'package:digi_store/pages/profile_page/pages/national_code_screen.dart';
 import 'package:digi_store/pages/profile_page/pages/profile_screen.dart';
 import 'package:digi_store/pages/profile_page/pages/user_account_screen.dart';
 import 'package:digi_store/pages/search_page/search_screen.dart';
@@ -16,6 +21,8 @@ import 'package:digi_store/pages/single_product_page/register_comment_screen.dar
 import 'package:digi_store/pages/single_product_page/single_product_screen.dart';
 import 'package:digi_store/pages/sub_category_page/page/sub_category_screen.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'pages/admin_page/pages/admin_screen.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -55,11 +62,6 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const ProductListScreen(),
-        transitionsBuilder: (context, a, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: a,
-          child: child,
-        ),
       );
     case BasketScreen.basketScreen:
       return PageRouteBuilder(
@@ -105,7 +107,37 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case MapScreen.mapScreen:
       return PageRouteBuilder(pageBuilder: (_, __, ___) => MapScreen());
     case SubCategoryScreen.subCategoryScreen:
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => SubCategoryScreen());
+      return PageRouteBuilder(
+          pageBuilder: (_, __, ___) => const SubCategoryScreen());
+
+    case EditMobileScreen.editMobileScreen:
+      return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              EditMobileScreen());
+    case EditNationalCodeScreen.editNationalCodeScreen:
+      return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              EditNationalCodeScreen());
+
+    case BuyHistoryPage.buyHistoryPage:
+      return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const BuyHistoryPage());
+
+    case AdminScreen.adminScreen:
+      return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              AdminScreen());
+
+    case ProductManagement.productMnagement:
+      return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const ProductManagement());
+
+    case UserManagement.userManagement:
+      return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const UserManagement());
   }
   return null;
 }

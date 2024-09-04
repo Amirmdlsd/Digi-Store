@@ -11,17 +11,7 @@ class EditNameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(Icons.close))
-        ],
-      ),
+      appBar: editBackBtn(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -31,7 +21,8 @@ class EditNameScreen extends StatelessWidget {
               SizedBox(height: 20.h),
               Center(
                 child: Text("نام و نام خانوادگی خود را وارد نمایید",
-                    style: Get.textTheme.bodyMedium?.copyWith(fontSize: 16.sp,fontWeight: FontWeight.w700)),
+                    style: Get.textTheme.bodyMedium?.copyWith(
+                        fontSize: 16.sp, fontWeight: FontWeight.w700)),
               ),
               SizedBox(height: 10.h),
               Text("نام", style: Get.textTheme.bodyMedium),
@@ -51,4 +42,18 @@ class EditNameScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+PreferredSizeWidget editBackBtn() {
+  return AppBar(
+    backgroundColor: Colors.white,
+    automaticallyImplyLeading: false,
+    actions: [
+      IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(Icons.close))
+    ],
+  );
 }

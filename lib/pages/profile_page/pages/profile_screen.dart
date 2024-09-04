@@ -1,4 +1,5 @@
 import 'package:digi_store/gen/assets.gen.dart';
+import 'package:digi_store/pages/profile_page/pages/buy-history_page.dart';
 import 'package:digi_store/pages/profile_page/pages/user_account_screen.dart';
 import 'package:digi_store/pages/profile_page/widget/profile_widgets.dart';
 import 'package:flutter/material.dart';
@@ -134,9 +135,12 @@ class ProfileScreen extends StatelessWidget {
           ),
           ProfileButton(
             lable: "تاریخچه خرید",
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(BuyHistoryPage.buyHistoryPage);
+            },
             icon: Icons.history,
           ),
+
           ProfileButton(
               lable: "خروج از حساب کاربری",
               onTap: () {

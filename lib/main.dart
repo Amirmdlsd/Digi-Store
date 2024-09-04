@@ -1,13 +1,9 @@
-import 'package:digi_store/config/supa_base.dart';
-import 'package:digi_store/pages/authentication_page/pages/register_screen.dart';
 import 'package:digi_store/pages/intro_page/splash_screen.dart';
-import 'package:digi_store/pages/single_product_page/register_comment_screen.dart';
 import 'package:digi_store/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   configLoading();
